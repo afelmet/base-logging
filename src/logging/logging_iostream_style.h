@@ -56,11 +56,10 @@ public:
 	virtual ~LogStream()
 	{
 	    // forward it to class Logger
-	    Logger::getInstance()->logBuffer(mPrio,mpFuncName,mpFileName,mLineNumber,mNamespace,os.str().c_str());
-	}
+	    Logger::getInstance().logBuffer(mPrio,mpFuncName,mpFileName,mLineNumber,mNamespace,os.str().c_str());
+  }
 
-
-	std::ostringstream& get(Priority prio,const char* pFuncName, const char* pFileName, int lineNumber, const char* name_space)
+  std::ostringstream& get(Priority prio,const char* pFuncName, const char* pFileName, int lineNumber, const char* name_space)
 	{
 	    mPrio = prio;
 	    mpFuncName = pFuncName;

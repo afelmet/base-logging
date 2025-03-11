@@ -8,55 +8,21 @@ class Singleton
 {
 
 private:
-	static Derived* msInstance;
+	static Derived& msInstance;
 
 protected:
 	Singleton() {}
+  Singleton(const Singleton&) = delete;
+  Singleton& operator=(const Singleton&) = delete;
 
 public:
-	static Derived* getInstance()
+	static Derived& getInstance()
 	{
-		static CGuard g;
-
-		if(msInstance == 0)
-		{
-			msInstance = new Derived(); 
-		}
-	
-		return msInstance;
+		static Derived msInstance;
+    return msInstance;
 	}
 	
-	static void destroyInstance()
-	{
-		delete msInstance;
-		msInstance = 0;
-	}
-
-	virtual ~Singleton()
-	{
-	}
-
-
-	// Nested singleton helper class
-	class CGuard
-	{
-		public: 
-			~CGuard()
-			{
-				if(msInstance != 0)
-				{
-					delete msInstance;
-					msInstance = 0;
-				}
-			}
-
-	};
-
-	friend class CGuard;
-
 };
-
-template<typename Derived> Derived* Singleton<Derived>::msInstance = 0;
 
 } // end namespace base;
 
