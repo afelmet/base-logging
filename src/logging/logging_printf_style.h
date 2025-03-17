@@ -244,19 +244,19 @@ private:
         * Retrieve the log level from the environment variable BASE_LOG_LEVEL.
         * Allows to influence verbosity of logging.
         */
-        Priority getLogLevelFromEnv() const;
+        [[nodiscard]] Priority getLogLevelFromEnv() const;
 
         /**
         * Query environment for the existence of BASE_LOG_COLOR variable. If
         * set, the output will be coloured.
         */
-        bool getLogColorFromEnv() const;
+        [[nodiscard]] bool getLogColorFromEnv() const;
 
         /** 
         * Retrieve log level from the environment variable BASE_LOG_FORMAT.
         * Allows to set single- or multi line output.
         */
-        LogFormat getLogFormatFromEnv() const;
+        [[nodiscard]] LogFormat getLogFormatFromEnv() const;
 
         FILE* mStream;
         std::vector<std::string> mPriorityNames;

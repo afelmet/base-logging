@@ -16,7 +16,7 @@ protected:
   Singleton& operator=(const Singleton&) = delete;
 
 public:
-	static Derived& getInstance()
+	[[nodiscard]] static Derived& getInstance()
 	{
 		static Derived msInstance;
     return msInstance;
