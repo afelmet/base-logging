@@ -82,11 +82,12 @@ Priority Logger::getLogLevelFromEnv() const
     std::string priority(loglevel);
     std::transform(priority.begin(), priority.end(),priority.begin(), (int(*)(int)) std::toupper);
     
+    // std::vector<std::string>::const_iterator it = mPriorityNames.begin();
+    // for(;it != mPriorityNames.end(); it++)
     int index = 0;
-    std::vector<std::string>::const_iterator it = mPriorityNames.begin();
-    for(;it != mPriorityNames.end(); it++)
+    for(const std::__cxx11::basic_string<char> &name : mPriorityNames)
     {
-        if(*it != priority)
+        if(name != priority)
         {
             index++;
         } else {
@@ -116,11 +117,12 @@ LogFormat Logger::getLogFormatFromEnv() const
     std::string logtype_str(logtype);
     std::transform(logtype_str.begin(), logtype_str.end(),logtype_str.begin(), (int(*)(int)) std::toupper);
 
-    std::vector<std::string>::const_iterator it = mLogFormatNames.begin();
+    // std::vector<std::string>::const_iterator it = mLogFormatNames.begin();
+    // for(;it != mLogFormatNames.end(); it++)
     int index = 0;
-    for(;it != mLogFormatNames.end(); it++)
+    for(const std::__cxx11::basic_string<char> &name : mLogFormatNames)
     {
-        if(*it != logtype_str)
+        if(name != logtype_str)
         {
             index++;
         } else {
