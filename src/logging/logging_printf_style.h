@@ -50,18 +50,18 @@
 
 #ifdef BASE_LONG_NAMES
 // Empty definition of debug statement
-#define BASE_LOG_DEBUG(FORMAT, ARGS...)
-#define BASE_LOG_INFO(FORMAT, ARGS...)
-#define BASE_LOG_WARN(FORMAT, ARGS...)
-#define BASE_LOG_ERROR(FORMAT, ARGS...)
-#define BASE_LOG_FATAL(FORMAT, ARGS...)
+#define BASE_LOG_DEBUG(FORMAT, ...)
+#define BASE_LOG_INFO(FORMAT, ...)
+#define BASE_LOG_WARN(FORMAT, ...)
+#define BASE_LOG_ERROR(FORMAT, ...)
+#define BASE_LOG_FATAL(FORMAT, ...)
 #define BASE_LOG_CONFIGURE(PRIO, STREAM)
 #else
-#define LOG_DEBUG(FORMAT, ARGS...)
-#define LOG_INFO(FORMAT, ARGS...)
-#define LOG_WARN(FORMAT, ARGS...)
-#define LOG_ERROR(FORMAT, ARGS...)
-#define LOG_FATAL(FORMAT, ARGS...)
+#define LOG_DEBUG(FORMAT, ...)
+#define LOG_INFO(FORMAT, ...)
+#define LOG_WARN(FORMAT, ...)
+#define LOG_ERROR(FORMAT, ...)
+#define LOG_FATAL(FORMAT, ...)
 #define LOG_CONFIGURE(PRIO, STREAM)
 #endif // BASE_LONG_NAMES
 
@@ -81,36 +81,36 @@
 //
 // Using __PRETTY_FUNCTION__ when using gcc otherwise __func__ to show current function
 #ifdef __GNUC__
-#define __LOG(PRIO, FORMAT, ARGS ...) { ::base::logging::Logger::getInstance().log(::base::logging::PRIO,__PRETTY_FUNCTION__, __FILE__, __LINE__, __STRINGIFY(BASE_LOG_NAMESPACE), FORMAT, ## ARGS); }
+#define __LOG(PRIO, FORMAT, ...) { ::base::logging::Logger::getInstance().log(::base::logging::PRIO,__PRETTY_FUNCTION__, __FILE__, __LINE__, __STRINGIFY(BASE_LOG_NAMESPACE), FORMAT, ##__VA_ARGS__); }
 #else
-#define __LOG(PRIO, FORMAT, ARGS ...) { ::base::logging::Logger::getInstance().log(::base::logging::PRIO,__func__, __FILE__, __LINE__, __STRINGIFY(BASE_LOG_NAMESPACE),  FORMAT, ## ARGS); }
+#define __LOG(PRIO, FORMAT, ...) { ::base::logging::Logger::getInstance().log(::base::logging::PRIO,__func__, __FILE__, __LINE__, __STRINGIFY(BASE_LOG_NAMESPACE),  FORMAT, ##__VA_ARGS__); }
 #endif
 
 #ifdef BASE_LONG_NAMES
 
 #if BASE_LOG_PRIORITY >= 1 
 #undef BASE_LOG_FATAL
-#define BASE_LOG_FATAL(FORMAT, ARGS...) __LOG(FATAL_P, FORMAT, ## ARGS)
+#define BASE_LOG_FATAL(FORMAT, ...) __LOG(FATAL_P, FORMAT, ##__VA_ARGS__)
 #endif
 
 #if BASE_LOG_PRIORITY >= 2
 #undef BASE_LOG_ERROR
-#define BASE_LOG_ERROR(FORMAT, ARGS...) __LOG(ERROR_P, FORMAT, ## ARGS)
+#define BASE_LOG_ERROR(FORMAT, ...) __LOG(ERROR_P, FORMAT, ##__VA_ARGS__)
 #endif
  
 #if BASE_LOG_PRIORITY >= 3
 #undef BASE_LOG_WARN
-#define BASE_LOG_WARN(FORMAT, ARGS...) __LOG(WARN_P, FORMAT, ## ARGS)
+#define BASE_LOG_WARN(FORMAT, ...) __LOG(WARN_P, FORMAT, ##__VA_ARGS__)
 #endif
 
 #if BASE_LOG_PRIORITY >= 4 
 #undef BASE_LOG_INFO
-#define BASE_LOG_INFO(FORMAT, ARGS...) __LOG(INFO_P, FORMAT, ## ARGS)
+#define BASE_LOG_INFO(FORMAT, ...) __LOG(INFO_P, FORMAT, ##__VA_ARGS__)
 #endif
 
 #if BASE_LOG_PRIORITY >= 5
 #undef BASE_LOG_DEBUG
-#define BASE_LOG_DEBUG(FORMAT, ARGS...) __LOG(DEBUG_P, FORMAT, ## ARGS)  
+#define BASE_LOG_DEBUG(FORMAT, ...) __LOG(DEBUG_P, FORMAT, ##__VA_ARGS__)
 #endif
 
 #undef BASE_LOG_CONFIGURE
@@ -125,27 +125,27 @@
 
 #if BASE_LOG_PRIORITY >= 1 
 #undef LOG_FATAL
-#define LOG_FATAL(FORMAT, ARGS...) __LOG(FATAL_P, FORMAT, ## ARGS)
+#define LOG_FATAL(FORMAT, ...) __LOG(FATAL_P, FORMAT, ##__VA_ARGS__)
 #endif
 
 #if BASE_LOG_PRIORITY >= 2
 #undef LOG_ERROR
-#define LOG_ERROR(FORMAT, ARGS...) __LOG(ERROR_P, FORMAT, ## ARGS)
+#define LOG_ERROR(FORMAT, ...) __LOG(ERROR_P, FORMAT, ##__VA_ARGS__)
 #endif
  
 #if BASE_LOG_PRIORITY >= 3
 #undef LOG_WARN
-#define LOG_WARN(FORMAT, ARGS...) __LOG(WARN_P, FORMAT, ## ARGS)
+#define LOG_WARN(FORMAT, ...) __LOG(WARN_P, FORMAT, ##__VA_ARGS__)
 #endif
 
 #if BASE_LOG_PRIORITY >= 4 
 #undef LOG_INFO
-#define LOG_INFO(FORMAT, ARGS...) __LOG(INFO_P, FORMAT, ## ARGS)
+#define LOG_INFO(FORMAT, ...) __LOG(INFO_P, FORMAT, ##__VA_ARGS__)
 #endif
 
 #if BASE_LOG_PRIORITY >= 5
 #undef LOG_DEBUG
-#define LOG_DEBUG(FORMAT, ARGS...) __LOG(DEBUG_P, FORMAT, ## ARGS)  
+#define LOG_DEBUG(FORMAT, ...) __LOG(DEBUG_P, FORMAT, ##__VA_ARGS__)
 #endif
 
 #endif // BASE_LONG_NAMES

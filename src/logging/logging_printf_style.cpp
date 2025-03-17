@@ -160,7 +160,7 @@ void Logger::logBuffer(Priority priority, const char* function, const char* file
 
         struct timeval tv;
         gettimeofday(&tv,0);
-        int milliSecs = tv.tv_usec/1000;
+        long int milliSecs = tv.tv_usec / 1000;
 
         strftime(currentTime, sizeof(currentTime), "%Y%m%d-%H:%M:%S", current);
 
@@ -170,10 +170,10 @@ void Logger::logBuffer(Priority priority, const char* function, const char* file
         {
             case ENDLOGFORMATS:
             case DEFAULT:
-                fprintf(mStream, "[%s:%03d] %s[%5s] - %s::%s%s (%s:%d - %s)\n", currentTime, milliSecs, mpLogColor[priority], mPriorityNames[priority].c_str(), name_space, buffer, mpColorEnd, file, line, function);
+                fprintf(mStream, "[%s:%03ld] %s[%5s] - %s::%s%s (%s:%d - %s)\n", currentTime, milliSecs, mpLogColor[priority], mPriorityNames[priority].c_str(), name_space, buffer, mpColorEnd, file, line, function);
                 break;
             case MULTILINE:
-                fprintf(mStream, "[%s:%03d] in %s\n\t%s:%d\n\t%s[%5s] - %s::%s%s \n", currentTime, milliSecs, function, file, line, mpLogColor[priority], mPriorityNames[priority].c_str(), name_space, buffer, mpColorEnd);
+                fprintf(mStream, "[%s:%03ld] in %s\n\t%s:%d\n\t%s[%5s] - %s::%s%s \n", currentTime, milliSecs, function, file, line, mpLogColor[priority], mPriorityNames[priority].c_str(), name_space, buffer, mpColorEnd);
                 break;
             case SHORT:
                 fprintf(mStream, "%s[%5s] - %s::%s%s\n", mpLogColor[priority], mPriorityNames[priority].c_str(), name_space, buffer, mpColorEnd);
