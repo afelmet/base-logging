@@ -35,18 +35,18 @@ Logger::Logger() : mStream(stderr), mPriorityNames(ENDPRIORITIES), mLogFormatNam
 
     if (getLogColorFromEnv())
     {
-    	mpLogColor[DEBUG_P] =  COLOR_BIG;
-    	mpLogColor[INFO_P] = COLOR_FG_WHITE;
-    	mpLogColor[WARN_P] = COLOR_FG_LIGHTYELLOW;
-    	mpLogColor[ERROR_P] = COLOR_FG_DARKRED;
-    	mpLogColor[FATAL_P] = COLOR_BG_DARKRED;
-    	mpLogColor[UNKNOWN_P] = COLOR_NORMAL;
-    	mpColorEnd = COLOR_NORMAL;
+        mpLogColor[DEBUG_P] = base::logging::colors::MODE::BOLD;
+        mpLogColor[INFO_P] = base::logging::colors::FG::WHITE;
+        mpLogColor[WARN_P] = base::logging::colors::FG::LIGHTYELLOW;
+        mpLogColor[ERROR_P] = base::logging::colors::FG::DARKRED;
+        mpLogColor[FATAL_P] = base::logging::colors::BG::DARKRED;
+        mpLogColor[UNKNOWN_P] = base::logging::colors::MODE::NORMAL;
+        mpColorEnd = base::logging::colors::MODE::NORMAL;
 
     } else {
-        for (int i = 0;i < ENDPRIORITIES;i++)
+        for (int i = 0; i < ENDPRIORITIES; i++)
         {
-        	mpLogColor[i] = "";
+            mpLogColor[i] = "";
         }
         mpColorEnd = "";
     }

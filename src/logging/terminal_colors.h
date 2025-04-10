@@ -19,7 +19,7 @@
     7	Reverse
     8	Hidden
 
-    	Foreground Colours
+    Foreground Colours
     30	Black
     31	Red
     32	Green
@@ -29,7 +29,7 @@
     36	Cyan
     37	White
 
-    	Background Colours
+    Background Colours
     40	Black
     41	Red
     42	Green
@@ -46,51 +46,62 @@
 #ifndef COLORS_H_
 #define COLORS_H_
 
-// colors
-#define COLOR_ESC          "\033"
-#define COLOR_NORMAL       COLOR_ESC"[0m"
-#define COLOR_BIG          COLOR_ESC"[1;1m" //big
-#define COLOR_LIGHT        COLOR_ESC"[1;2m" //italic?
-#define COLOR_UNDERLINE    COLOR_ESC"[1;4m" //underscored
-#define COLOR_BG_BLACK     COLOR_ESC"[1;7m" //background black, foreground white(?)
-#define COLOR_BG_WHITE     COLOR_ESC"[1;8m" //background white, foreground white(?)
-#define COLOR_SCORED       COLOR_ESC"[1;4m" //scored
-// font colors
-#define COLOR_FG_DARKGREY   COLOR_ESC"[1;30m"
-#define COLOR_FG_DARKRED    COLOR_ESC"[1;31m"
-#define COLOR_FG_DARKGREEN  COLOR_ESC"[1;32m"
-#define COLOR_FG_DARKYELLOW COLOR_ESC"[1;33m"
-#define COLOR_FG_DARKBLUE   COLOR_ESC"[1;34m"
-#define COLOR_FG_DARKVIOLET COLOR_ESC"[1;35m"
-#define COLOR_FG_LIGHTBLUE  COLOR_ESC"[1;36m"
-#define COLOR_FG_WHITE      COLOR_ESC"[1;37m"
-#define COLOR_FG_BLACK      COLOR_ESC"[1;38m"
+namespace base {
 
-#define COLOR_FG_MIDGREY     COLOR_ESC"[1;90m"
-#define COLOR_FG_LIGHTRED    COLOR_ESC"[1;91m"
-#define COLOR_FG_LIGHTGREEN  COLOR_ESC"[1;92m"
-#define COLOR_FG_LIGHTYELLOW COLOR_ESC"[1;93m"
-#define COLOR_FG_LIGHTVIOLET COLOR_ESC"[1;95m"
+    namespace logging {
 
-// background colors
-#define COLOR_BG_DARKGREY   COLOR_ESC"[1;40m"
-#define COLOR_BG_DARKRED    COLOR_ESC"[1;41m"
-#define COLOR_BG_DARKGREEN  COLOR_ESC"[1;42m"
-#define COLOR_BG_DARKYELLOW COLOR_ESC"[1;43m"
-#define COLOR_BG_DARKBLUE   COLOR_ESC"[1;44m"
-#define COLOR_BG_DARKVIOLET COLOR_ESC"[1;45m"
-#define COLOR_BG_DARKBLUE2   COLOR_ESC"[1;46m"
-#define COLOR_BG_LIGHTGREY  COLOR_ESC"[1;47m"
+        namespace colors {
 
-#define COLOR_BG_MIDGREY     COLOR_ESC"[1;100m"
-#define COLOR_BG_LIGHTRED    COLOR_ESC"[1;101m"
-#define COLOR_BG_LIGHTGREEN  COLOR_ESC"[1;102m"
-#define COLOR_BG_LIGHTYELLOW COLOR_ESC"[1;103m"
-#define COLOR_BG_LIGHTBLUE   COLOR_ESC"[1;104m"
-#define COLOR_BG_LIGHTVIOLET COLOR_ESC"[1;105m"
-#define COLOR_BG_LIGHTBLUE2   COLOR_ESC"[1;106m"
+            namespace MODE {
+                const char* NORMAL    = "\033[0m";
+                const char* BOLD      = "\033[1;1m"; // bold
+                const char* LIGHT     = "\033[1;2m"; // decreased intensity
+                const char* UNDERLINE = "\033[1;4m"; // underlined
+                const char* INVERT    = "\033[1;7m"; // inverts fg and bg colours
+                const char* CONCEAL   = "\033[1;8m"; // conceals/hides text
+                const char* SCORED    = "\033[1;9m"; // crossed-out
+            }
 
+            namespace FG {
+                const char* DARKGREY    = "\033[1;30m";
+                const char* DARKRED     = "\033[1;31m";
+                const char* DARKGREEN   = "\033[1;32m";
+                const char* DARKYELLOW  = "\033[1;33m";
+                const char* DARKBLUE    = "\033[1;34m";
+                const char* DARKVIOLET  = "\033[1;35m";
+                const char* LIGHTBLUE   = "\033[1;36m";
+                const char* WHITE       = "\033[1;37m";
+                const char* BLACK       = "\033[1;38m";
+                const char* MIDGREY     = "\033[1;90m";
+                const char* LIGHTRED    = "\033[1;91m";
+                const char* LIGHTGREEN  = "\033[1;92m";
+                const char* LIGHTYELLOW = "\033[1;93m";
+                const char* LIGHTVIOLET = "\033[1;95m";
+            }
 
+            namespace BG {
+                const char* DARKGREY    = "\033[1;40m";
+                const char* DARKRED     = "\033[1;41m";
+                const char* DARKGREEN   = "\033[1;42m";
+                const char* DARKYELLOW  = "\033[1;43m";
+                const char* DARKBLUE    = "\033[1;44m";
+                const char* DARKVIOLET  = "\033[1;45m";
+                const char* DARKBLUE2   = "\033[1;46m";
+                const char* LIGHTGREY   = "\033[1;47m";
+                const char* MIDGREY     = "\033[1;100m";
+                const char* LIGHTRED    = "\033[1;101m";
+                const char* LIGHTGREEN  = "\033[1;102m";
+                const char* LIGHTYELLOW = "\033[1;103m";
+                const char* LIGHTBLUE   = "\033[1;104m";
+                const char* LIGHTVIOLET = "\033[1;105m";
+                const char* LIGHTBLUE2  = "\033[1;106m";
+            }
+
+        }
+
+    }
+
+}
 
 #endif
 
